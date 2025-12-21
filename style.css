@@ -1,0 +1,292 @@
+:root {
+    --green: #2bff3a;
+    --green-soft: rgba(43, 255, 58, 0.35);
+    --bg: rgb(28 86 57 / 64%);
+    --bg-dark: rgb(25 62 43 / 67%);
+    --border: #1aff3a;
+    --text: #b6ffbe;
+    --text-strong: #eaffea;
+    --red: #ff3b3b;
+    --red-soft: rgba(255, 59, 59, 0.35);
+}
+
+    * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: radial-gradient(circle at center, #5bbf97 0%, #2c553f 40%, #0e1c14 100%);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url(https://static.wikia.nocookie.net/fallout/images/5/5d/Falloutshelter_radiostudio_1room_lvl1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    /* ================= WINDOW ================= */
+    .pip-window {
+      width: min(1100px, 95vw);
+      height: 560px;
+      background: linear-gradient(180deg, var(--bg), var(--bg-dark));
+      border: 3px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 0 40px var(--green-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pip-window::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 12px;
+      border: 2px solid rgba(43,255,58,0.15);
+      pointer-events: none;
+    }
+
+    /* ================= HEADER ================= */
+    .pip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 22px;
+      border-bottom: 2px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-btn {
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--text);
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+
+    .nav-btn:hover {
+      color: var(--text-strong);
+      text-shadow: 0 0 8px var(--green);
+    }
+    .nav-btn.disabled {
+  pointer-events: none;
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.nav-btn.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+    .nav-btn.end:hover {
+    text-shadow: 2px 3px 8px #f50a0a;
+}
+
+.nav-btn.end {
+    color: #ffa736;
+}
+
+
+    .pip-title {
+      font-size: 20px;
+      color: var(--text-strong);
+      text-shadow: 0 0 10px var(--green);
+    }
+
+    /* ================= SCREENS ================= */
+    .screens {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 62px);
+      overflow: hidden;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.35s ease;
+    }
+
+    /* next screen ALWAYS starts on the right */
+    .screen.pre-right {
+      transition: all 0s;
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    .screen.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .screen.exit-left {
+      transform: translateX(-100%);
+      opacity: 0;
+    } {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .screen.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .screen.exit-left {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    /* ================= BLOCKS ================= */
+    .left-block {
+      background: rgba(0,0,0,0.35);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blueprint {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(43,255,58,0.12) 1px, transparent 1px),
+        linear-gradient(rgba(43,255,58,0.12) 1px, transparent 1px);
+      background-size: 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-strong);
+      font-size: 18px;
+      position: relative;
+    }
+    body>#vault-svg{
+      position:absolute; left:-9999px; top:-9999px
+    }
+
+    svg {
+      filter: drop-shadow(0 0 6px rgba(43,255,58,0.35));
+    }
+
+    .vault-line {
+    --shadow-clr: rgb(255 255 255 / 47%);
+    stroke: #ffffff;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 4px var(--shadow-clr));
+}
+
+    .vault-line[vault-transversal="true"] {
+      stroke-dasharray: 6 4;
+    }
+
+    .angle-dot {
+    fill: #ffffff4f;
+    stroke: #2c5f34;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+    transition: fill 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+   .angle-dot.active {
+    r: 8;
+    fill: #7bb725;
+    filter: drop-shadow(0 0 8px var(--green));
+}
+
+    .right-block {
+      background: rgba(0,0,0,0.35);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .question {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--text-strong);
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: auto;
+    }
+
+    .answer {
+      padding: 12px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .answer:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 12px var(--green);
+      background: var(--green-soft);
+    }
+
+    .action-btn {
+      align-self: flex-end;
+      margin-top: 18px;
+      padding: 10px 26px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(0,0,0,0.3);
+      color: var(--text-strong);
+      font-size: 14px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .action-btn:hover {
+      box-shadow: 0 0 16px var(--green);
+      transform: translateY(-2px);
+    }
+    details[open] p {
+    color: #ffffff;
+}
+
+    /* ================= LOSE ================= */
+    .lose {
+      background: linear-gradient(180deg, rgba(60,0,0,0.9), rgba(25,0,0,0.95));
+      animation: danger 4s infinite alternate;
+    }
+
+    @keyframes danger {
+      from { box-shadow: 0 0 20px var(--red-soft); }
+      to { box-shadow: 0 0 40px var(--red); }
+    }
+
+    /* ================= SCANLINES ================= */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0px,
+        rgba(0,0,0,0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+    }
