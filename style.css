@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-image: url(https://static.wikia.nocookie.net/fallout/images/5/5d/Falloutshelter_radiostudio_1room_lvl1.jpg);
+    background-image: url(/bg.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
