@@ -8,6 +8,7 @@
     --text-strong: #eaffea;
     --red: #ff3b3b;
     --red-soft: rgba(255, 59, 59, 0.35);
+    --yellow: #ffe600;
 }
 
     * { box-sizing: border-box; }
@@ -130,11 +131,7 @@
     .screen.exit-left {
       transform: translateX(-100%);
       opacity: 0;
-    } {
-      transform: translateX(-100%);
-      opacity: 0;
     }
-
     .screen.active {
       transform: translateX(0);
       opacity: 1;
@@ -205,7 +202,23 @@
     fill: #7bb725;
     filter: drop-shadow(0 0 8px var(--green));
 }
+text.angle-text {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20pt;
+    fill: white;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+    transition: fill 0.3s, box-shadow 0.3s, transform 0.3s;
+}
 
+text.angle-text.green {
+      /*fill: var(--green);*/
+    filter: drop-shadow(1px 1px 4px black) ;
+}
+text.angle-text.yellow {
+      fill: var(--yellow);
+    filter: drop-shadow(1px 1px 4px black);
+}
     .right-block {
       background: rgba(0,0,0,0.35);
       border: 2px solid var(--border);
@@ -265,6 +278,20 @@
     color: #ffffff;
 }
 
+.answer[disabled] {
+    pointer-events: none;
+    border-color: gray;
+    color: gainsboro;
+    /* box-shadow: 0 0 12px var(--green); */
+}
+.answer[disabled]::after {
+    display: inline;
+    position: relative;
+    content: "НЕДОСТУПНО";
+    left: 20px;
+    font-size: 11pt;
+    color: #d50000;
+}
     /* ================= LOSE ================= */
     .lose {
       background: linear-gradient(180deg, rgba(60,0,0,0.9), rgba(25,0,0,0.95));
@@ -290,3 +317,86 @@
       );
       pointer-events: none;
     }
+
+
+    .results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 6px;
+}
+
+.grade-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.badge-starburst {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle at center,
+    #f5e6a8 0%,
+    #e2c86f 60%,
+    #c9a94a 100%);
+  clip-path: polygon(
+    50% 0%, 62% 12%, 78% 6%, 82% 22%, 100% 30%,
+    88% 50%, 100% 70%, 82% 78%, 78% 94%, 62% 88%,
+    50% 100%, 38% 88%, 22% 94%, 18% 78%, 0% 70%,
+    12% 50%, 0% 30%, 18% 22%, 22% 6%, 38% 12%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0,0,0,.4);
+}
+
+.badge-letter {
+  font-size: 48px;
+  font-weight: bold;
+  color: #5a3e1b;
+  line-height: 1;
+}
+
+.badge-score {
+  font-size: 20px;
+  color: #5a3e1b;
+  opacity: 0.85;
+}
+
+.badge-caption {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+
+
+.badge-starburst {
+  animation: pop 0.6s ease-out;
+}
+
+
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+/* ================= SCREEN OPTIMIZATION =================== */
+
+@media (max-width: 900px) {
+    .pip-window {
+      height: calc(100vh - 40px);
+      
+  }
+  .screen {
+      grid-template-columns: unset;
+      overflow-y: auto;
+  }
+
+}
