@@ -9,69 +9,32 @@
 </head>
 <body>
 
-<!-- GLOBAL SVG (single instance) -->
-<svg id="vault-svg" viewBox="0 0 300 300" width="100%" height="100%" style="">
-<!--two lines-->
-  <line name="a" x1="40" y1="76" x2="260" y2="89" class="vault-line"/>
-  <line name="b" x1="40" y1="225" x2="260" y2="214" class="vault-line"/>
-<!--transversal-->
-  <line name="c" x1="60" y1="20" x2="240" y2="280" class="vault-line" vault-transversal="true"/>
-<!--angle points-->
-  <g class="angles">
-    <circle name="c1" cx="73" cy="65" r="7" class="angle-dot"/>
-    <circle name="c2" cx="113" cy="65" r="7" class="angle-dot"/>
-    <circle name="c3" cx="93" cy="95" r="7" class="angle-dot"/>
-    <circle name="c4" cx="133" cy="95" r="7" class="angle-dot"/>
-    <circle name="c5" cx="170" cy="204" r="7" class="angle-dot"/>
-    <circle name="c6" cx="210" cy="204" r="7" class="angle-dot"/>
-    <circle name="c7" cx="190" cy="234" r="7" class="angle-dot"/>
-    <circle name="c8" cx="230" cy="234" r="7" class="angle-dot"/>
-  </g>
-</svg>
+
 
 <div class="pip-window" id="window">
   <div class="pip-header">
-    <div class="nav-btn home disabled" onclick="switchScreen('start')" >До меню</div>
+    <div class="nav-btn home disabled" >До меню</div>
     <div class="pip-title">Кути і січна</div>
-    <div class="nav-btn end disabled" onclick="" >Завершити</div>
+    <div class="nav-btn end disabled" >Завершити</div>
   </div>
 
   <div class="screens">
 
-    <!-- START -->
-    <div class="screen active" id="start">
-      <div class="left-block">
-        <div class="blueprint">
-         <div id="svg-host"></div>
 
-        
-        
-        </div>
-      </div>
-      <div class="right-block">
-        <div class="question">Вивчення назв та властивостей кутів при перетині двох прямих січною.</div>
-        <div class="answers">
-          <div class="answer" onclick="startMode('theory')">Теорія</div>
-          <div class="answer" onclick="startMode('trainer')">Тренажер</div>
-          <div class="answer" onclick="startMode('tasks')">Задачі</div>
-        </div>
-      </div>
-    </div>
 
     <!-- MODE -->
-    <div class="screen" id="mode"></div>
+    <div class="screen mode active">
+    </div>
+    <!-- MODE -->
+    <div class="screen mode pre-right">
+    </div>
 
-    <!-- RESULT -->
-    <div class="screen" id="result"></div>
-
-    <!-- LOSE -->
-    <div class="screen lose" id="lose"></div>
 
   </div>
 </div>
 
-<script type="text/javascript" src="script.js"></script>
 
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
 
